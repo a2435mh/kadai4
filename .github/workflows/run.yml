@@ -4,11 +4,11 @@ on:  [push]
 jobs:
   same_check:
     name: Use Linux Commands
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
-    - name:  Checkout
-      uses: actions/checkout@v4
-    - name: Pemission Setting
-      run: chmod +x same.sh dousa_test.sh
-    - name: Test Start!
-      run: ./dousa_test.sh
+      - name:  Checkout
+        uses: actions/checkout@v4
+      - name: Pemission Setting
+        run: chmod +x same.sh dousa_test.sh
+      - name: Test Start!
+        run: ./dousa_test.sh
