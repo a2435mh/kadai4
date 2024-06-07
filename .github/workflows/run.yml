@@ -3,7 +3,7 @@ on:  [push]
 
 jobs:
   same_check:
-  name:  Use Linux Commands
+  name: Use Linux Commands
   runs_on: ubuntu-latest
   steps:
     - name:  Checkout
