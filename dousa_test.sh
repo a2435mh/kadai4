@@ -10,55 +10,45 @@ ERROR_EXIT() {
   exit 1
 }
 
-# test1: 引数が２つでないか
 
-# 引数が２つ以外の時エラー表示し終了する
-./gcd.sh  > /tmp/$$-ans
+#テストの開始
+# test1: 正常
+echo "test1:正常処理"
+./gcd.sh 3 6 > $tmp-result
+echo "3" > $tmp-ans
+diff $tmp-result $tmp-ans || echo "エラー　test1" >> $tmp-error
+
+#test2:正常
+./gcd.sh 81 9 > $tmp-result
+echo "3" > $tmp-ans
+diff $tmp-result $tmp-ans || echo "エラー　test2" >> $tmp-error
 
 
-if [ "$#" -ne 2 ]; then
-  echo "引数が２つ指定されていません。" > /tmp/$$-ans
-  diff /tmp/$$-ans /tmp/$$-ans ||  ERROR_EXIT "test-1 ERROR"
-  rm -f /tmp/$$*
+#test3:異常
+# 引数が1つ以外の時エラー表示し終了する
+./gcd.sh 5  > /tmp/$$-result
+echo "エラー" > $tmp-ans
+diff $tmp-result $tmp-ans || echo "エラー test3 " >> $tmp-error
 
+#test4:異常
+#引数がマイナスの値
+./gcd.sh -5 10  > /tmp/$$-result
+echo "エラー" > $tmp-ans
+diff $tmp-result $tmp-ans || echo "エラー test4 " >> $tmp-error
+
+
+
+
+# test5 : 異常
+# 引数1が文字
+./gcd.sh "abc"  > /tmp/$$-result
+echo "エラー" > $tmp-ans
+diff $tmp-result $tmp-ans || echo "エラー test5 " >> $tmp-error
+
+
+
+
+#エラー出力
+if [ -f $tmp-error];then
+	ERROR_EXIT
 fi
-
-
-# test2 : 整数でない場合の動作が正しいか
-# 引数1が数字かどうかをチェック
-if echo "$1" | grep -q "^[0-9]\+$;then
-	echo"入力値は：$1"
-else
-	echo "数値を入力してください"
-	exit
-fi
-
-
-# test2 : 整数でない場合の動作が正しいか
-# 引数1が数字かどうかをチェック
-if echo "$1" | grep -q "^[0-9]\+$;then
-	echo"入力値は：$1"
-else
-	echo "数値を入力してください"
-	exit
-fi
-
-
-#引数２が数字かどうかチェック
-if echo "$2" | grep -q "| grep -q "^[0-9]\+$;then
-	 echo"入力値は：$2"
-else
-        echo "数値を入力してください"
-        exit
-fi
-
-
-# test3 :ちゃんとsameかどうかの判定ができているか
-echo "1 is equal to 1 " > ${tmp}-ans
-  ./same.sh 1 1 > ${tmp}-result
-  diff ${tmp}-ans ${tmp}-result && echo "test3-1:PASS" || ERROR_EXIT "error in test3-1"
-
-  echo "100000 is equal to 100000"
-
-rm -f ${tmp}-*
-
