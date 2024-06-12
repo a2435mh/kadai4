@@ -2,11 +2,12 @@ name:  check-test
 on:  [push]
 
 jobs:
-  error_check:
+  scriptk:
     name: Use Linux Commands
     runs-on: ubuntu-latest
     steps:
-      - echo gcd script
+      - name: echo gcd script
+        run:  echo gcd script
       - name: Pemission Setting
         run: chmod +x same.sh dousa_test.sh
       - name: Test Start!
