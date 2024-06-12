@@ -9,6 +9,6 @@ jobs:
       - name: echo gcd script
         run:  echo gcd script
       - name: Pemission Setting
-        run: chmod +x dousa_test.sh
+        run: chmod +x ./dousa_test.sh
       - name: Test Start!
         run: ./dousa_test.sh
