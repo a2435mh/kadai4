@@ -6,6 +6,13 @@ jobs:
     name: Use Linux Commands
     runs-on: ubuntu-latest
     steps:
+      
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: List files in kadai4_gcd directory
+        run : ls -al
+
       - name: echo gcd script
         run:  echo gcd script
       - name: Pemission Setting
