@@ -1,13 +1,12 @@
-name:  same-test
+name:  check-test
 on:  [push]
 
 jobs:
-  same_check:
+  error_check:
     name: Use Linux Commands
     runs-on: ubuntu-latest
     steps:
-      - name:  Checkout
-        uses: actions/checkout@v4
+      - echo gcd script
       - name: Pemission Setting
         run: chmod +x same.sh dousa_test.sh
       - name: Test Start!
